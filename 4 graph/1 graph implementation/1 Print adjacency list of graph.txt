@@ -1,0 +1,10 @@
+Question
+	Here we have to print adjacency list of graph in the order of insert in it.
+	question is very easy 
+	open this link for complete question.
+	https://practice.geeksforgeeks.org/problems/print-adjacency-list/0
+	
+	
+Solution 
+	Its very easy we have created graph using vector of vector and push edge in addedge function
+	

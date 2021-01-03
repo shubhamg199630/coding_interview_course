@@ -1,0 +1,80 @@
+/*
+This code very similar to bfs.
+First read bfs before reading this.
+as like bfs the 
+	Input of dfs is adjency matrix or adjancy list.
+	Now keep in mind that Output is dfs order.
+	As like dfs order multiple answer are possible.
+	
+	
+	Algorithm 
+	We use stack here???
+	stack is used because we want only  last node od depth visit first.So in bfs we use queue while in dfs in stack.
+	Now simlar like we take one node on stack and will visit untill the stack is not empty.
+	We have to make order of this list.
+	Time Complexity----
+	same as V+E for Adjancy list
+	and V2 for adjency Matrix.
+	
+
+*/
+
+
+
+
+
+/* Function to do DFS of graph
+
+
+
+
+g : adjacency list of graph
+N : number of vertices
+
+return a list containing the DFS traversal of the given graph
+*/
+*/
+void dfsutill(vector <int> g[], int curr, vector <int> &dfsans,vector <int> &vis)
+{
+    vis[curr]=true;
+    for (int i=0;i<g[curr].size();i++)
+    {
+        if (vis[g[curr][i]]==false)
+        {
+            dfsans.push_back(g[curr][i]);
+            dfsutill(g,g[curr][i],dfsans,vis);
+        }
+    }
+}
+vector <int> dfs(vector<int> g[], int N)
+{
+    vector <int> vis(N,false);
+    vector <int> dfsans;
+    dfsans.push_back(0);
+    for (int i=0;i<N;i++)
+    {
+        if (vis[i]==false)
+        {
+            dfsutill(g,i,dfsans,vis);
+        }
+    }
+    return dfsans;
+}
+
+
+
+
+
+Application
+	1- To find graph has cycle or not.Just checking the presence of backedge in the graph . Problem will come
+	2- To find number of connected component in the graph.
+	3- to find graph is bipartite or not. 
+	4) Topological Sorting:Topological Sorting is mainly used for scheduling jobs from the given dependencies among jobs. In computer science, applications 
+	of this type arise in instruction scheduling, ordering of formula cell evaluation when recomputing formula values in spreadsheets, logic synthesis, 
+	determining the order of compilation tasks to perform in makefiles, data serialization, and resolving symbol dependencies in linkers [2].
+	5) To test if a graph is bipartite:We can augment either BFS or DFS when we first discover a new vertex, color it opposited its parents, and for each 
+	other edge, check it doesn’t link two vertices of the same color. The first vertex in any connected component can be red or black! See this for details.
+	6) Finding Strongly Connected Components of a graph A directed graph is called strongly connected if there is a path from each vertex in the graph to 
+	every other vertex. (See this for DFS based algo for finding Strongly Connected Components)
+	7) Solving puzzles with only one solution, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path 
+	in the visited set.)

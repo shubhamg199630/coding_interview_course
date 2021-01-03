@@ -1,0 +1,71 @@
+/* This is code for BFS
+We we did is first understand the input of the problem
+Here we have to implement Breadth first search means breadth will be given priority so we will use queue
+Queue is used because we have to give prority to adjacent element . stack will priority to last element.
+Now 
+ Input to the Problem is Graph
+ We use adjency Matrix to represent graph (In code we have used A list of vector to represent graph )
+ Output is bfs of graph
+ Note graph is can be directed or undirected but we can visited every verte4x still.
+ One more point is if graph is not connect that all vectex will not come .
+ so the algo goes here--
+ 	we taken queue and visited array for every node.
+ 	we push one node in queue as starting vertex of graph.
+ 	while queue is not empty we push element and while pop from queue if it is not visited than we will print it.
+ 	
+ 	
+ 	Time Complexity We have to visit each vertex and edge of 
+ 	USing Adjancy List -V+E is complexity
+ 	But Adjancy Martix will give - V^2 )
+ 	
+ 	
+ 	*/
+ 	
+vector <int> bfs(vector<int> g[], int N) 
+{
+    queue <int > q;
+    vector <int> bfs;
+    vector <int> vis(N,0);
+    q.push(0);
+    vis[0]=1;
+    while (!q.empty())
+    {
+        int x=q.front();
+        q.pop();
+        bfs.push_back(x);
+        for (int i=0;i<g[x].size();i++)
+        {
+            if (vis[g[x][i]]!=1)
+            {
+                q.push(g[x][i]);
+                vis[g[x][i]]=1;
+            }
+        }
+    }
+    return bfs;
+}
+
+
+
+
+/*
+Application
+	1- To find graph has cycle or not.In dfs we can find it easily by just considering backtracking edge. but Here using bfs  Kahn’s algorithm for Topological Sorting
+	is used to find backtracking edge. 
+	2- To find number of connected component in the graph.
+	3- to find graph is bipartite or not.
+	4) Peer to Peer Networks. In Peer to Peer Networks like BitTorrent, Breadth First Search is used to find all neighbor nodes.
+	5) Crawlers in Search Engines: Crawlers build index using Breadth First. The idea is to start from source page and follow all links from source and keep doing same.
+	Depth First Traversal can also be used for crawlers, but the advantage with Breadth First Traversal is, depth or levels of the built tree can be limited.
+	4) Social Networking Websites: In social networks, we can find people within a given distance ‘k’ from a person using Breadth First Search till ‘k’ levels.
+	5) GPS Navigation systems: Breadth First Search is used to find all neighboring locations.
+
+	6) Broadcasting in Network: In networks, a broadcasted packet follows Breadth First Search to reach all nodes.
+
+	7) In Garbage Collection: Breadth First Search is used in copying garbage collection using Cheney’s algorithm. Refer this and for details. Breadth First Search is
+ 	preferred over Depth First Search because of better locality of reference:
+	9) Ford–Fulkerson algorithm In Ford-Fulkerson algorithm, we can either use Breadth First or Depth First Traversal to find the maximum flow. Breadth First Traversal is 
+	preferred as it reduces worst case time complexity to O(VE2).
+	10) To test if a graph is Bipartite We can either use Breadth First or Depth First Traversal.
+	11) Path Finding We can either use Breadth First or Depth First Traversal to find if there is a path between two vertices.
+	12) Finding all nodes within one connected component: We can either use Breadth First or Depth First Traversal to find all nodes reachable from a given node.
