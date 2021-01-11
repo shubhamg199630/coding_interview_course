@@ -102,10 +102,12 @@ node* insert_at_k(node *head, int x, int k)     // inserting element at kth plac
 int main()
 {
     struct node *head=NULL;     // creating head
-    head=createnode(1);         // adding one
-    head->next=createnode(2);       // adding 2
-    head->next->next=createnode(3);
-    head->next->next->next=createnode(4);
+
+    for (int i=1;i<=10;i++)
+        head=insertatlast(head,i);          // inserting one to 10;
+
+
+
     //print(head);
     //print_last_2(head);
     //find_x(head,3);
