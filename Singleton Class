@@ -1,0 +1,53 @@
+Singleton Class 
+#include<bits/stdc++.h>
+using namespace std;
+class Logger
+{
+    // first create a pointer;
+    static int count; // this is used to count instances that we create only.
+    static mutex mu;
+    static Logger * logger_instance;
+    private:
+    Logger(){
+        cout<<"instance creeate = "<< count<<endl;
+    }; // defualt constructor
+    Logger(const Logger &l); // copy constructor
+    Logger operator = (const Logger &l); // equal to operator as private
+    public:
+    static Logger * get_logger()
+    {
+        if (logger_instance == NULL)
+        {
+            mu.lock();
+            if (logger_instance == NULL)
+            {
+                logger_instance = new Logger;
+            }
+            mu.unlock();
+        }
+        return logger_instance;
+    }
+    static void print()
+    {
+        cout<<"We are printing just for testing";
+    }
+};
+// declaration assign value to the variable
+int Logger:: count = 0;
+mutex Logger :: mu;
+Logger * Logger :: logger_instance = NULL;
+void CreateLoggerviathread(int t)
+{
+    Logger * Logger = Logger :: get_logger();
+    cout<<"testuser thread = "<<t<<endl;
+}
+int main()
+{
+    // Logger *logger = Logger::get_logger();
+    // Logger *logger1 = Logger::get_logger();
+    thread t1(CreateLoggerviathread,1);
+    thread t2(CreateLoggerviathread,2);
+    t1.join();
+    t2.join();
+    //logger->print();
+}
